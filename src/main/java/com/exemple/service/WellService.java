@@ -12,6 +12,7 @@ public class WellService {
 
     private final WellRepository wellRepository;
     private final OrganisationService organisationService;
+    private final CustomerService customerService;
     private final RegionService regionService;
     private final SubsurfacePlotService subsurfacePlotService;
     private final FieldService fieldService;
@@ -20,6 +21,7 @@ public class WellService {
 
     public WellService(WellRepository wellRepository,
                        OrganisationService organisationService,
+                       CustomerService customerService,
                        RegionService regionService,
                        SubsurfacePlotService subsurfacePlotService,
                        FieldService fieldService,
@@ -27,6 +29,7 @@ public class WellService {
                        DrillingCrewService drillingCrewService) {
         this.wellRepository = wellRepository;
         this.organisationService = organisationService;
+        this.customerService = customerService;
         this.regionService = regionService;
         this.subsurfacePlotService = subsurfacePlotService;
         this.fieldService = fieldService;
@@ -48,22 +51,29 @@ public class WellService {
     @Transactional
     public Well create(Well well, Long organisationId, Long regionId,
                        Long subsurfacePlotId, Long fieldId,
-                       Long clusterId, Long drillingCrewId) {
+                       Long clusterId, Long drillingCrewId,
+                       Long customerId) {
         well.setOrganisation(organisationService.findById(organisationId));
         well.setRegion(regionService.findById(regionId));
         well.setSubsurfacePlot(subsurfacePlotService.findById(subsurfacePlotId));
         well.setField(fieldService.findById(fieldId));
         well.setCluster(clusterService.findById(clusterId));
         well.setDrillingCrew(drillingCrewService.findById(drillingCrewId));
+        if (customerId != null) {
+            well.setCustomer(customerService.findById(customerId));
+        }
         return wellRepository.save(well);
     }
 
     @Transactional
     public Well update(Long id, Well well, Long organisationId, Long regionId,
                        Long subsurfacePlotId, Long fieldId,
-                       Long clusterId, Long drillingCrewId) {
+                       Long clusterId, Long drillingCrewId,
+                       Long customerId) {
         Well existing = findById(id);
-        existing.setWellNumber(well.getWellNumber());
+        if (well.getWellNumber() != null) {
+            existing.setWellNumber(well.getWellNumber());
+        }
         if (organisationId != null) {
             existing.setOrganisation(organisationService.findById(organisationId));
         }
@@ -81,6 +91,9 @@ public class WellService {
         }
         if (drillingCrewId != null) {
             existing.setDrillingCrew(drillingCrewService.findById(drillingCrewId));
+        }
+        if (customerId != null) {
+            existing.setCustomer(customerService.findById(customerId));
         }
         return wellRepository.save(existing);
     }

@@ -9,6 +9,7 @@ public class WellRequest {
     private Long fieldId;
     private Long clusterId;
     private Long drillingCrewId;
+    private Long customerId;
 
     public String getWellNumber() {
         return wellNumber;
@@ -64,5 +65,13 @@ public class WellRequest {
 
     public void setDrillingCrewId(Long drillingCrewId) {
         this.drillingCrewId = drillingCrewId;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }

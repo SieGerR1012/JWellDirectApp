@@ -36,12 +36,14 @@ public class OrganisationController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Organisation> update(@PathVariable Long id, @RequestBody Organisation organisation) {
-        return ResponseEntity.ok(service.update(id, organisation));
+        Organisation updated = service.update(id, organisation);
+        return ResponseEntity.ok(updated);
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<Organisation> patch(@PathVariable Long id, @RequestBody Organisation organisation) {
-        return ResponseEntity.ok(service.patch(id, organisation));
+        Organisation updated = service.patch(id, organisation);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")

@@ -44,6 +44,11 @@ public class Well {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private DrillingCrew drillingCrew;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Customer customer;
+
     public Well() {}
 
     public Long getId() {
@@ -108,5 +113,13 @@ public class Well {
 
     public void setDrillingCrew(DrillingCrew drillingCrew) {
         this.drillingCrew = drillingCrew;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

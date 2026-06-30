@@ -39,7 +39,8 @@ public class WellController {
                 request.getSubsurfacePlotId(),
                 request.getFieldId(),
                 request.getClusterId(),
-                request.getDrillingCrewId());
+                request.getDrillingCrewId(),
+                request.getCustomerId());
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
@@ -53,7 +54,8 @@ public class WellController {
                 request.getSubsurfacePlotId(),
                 request.getFieldId(),
                 request.getClusterId(),
-                request.getDrillingCrewId());
+                request.getDrillingCrewId(),
+                request.getCustomerId());
         return ResponseEntity.ok(updated);
     }
 
@@ -67,7 +69,8 @@ public class WellController {
                 request.getSubsurfacePlotId(),
                 request.getFieldId(),
                 request.getClusterId(),
-                request.getDrillingCrewId());
+                request.getDrillingCrewId(),
+                request.getCustomerId());
         return ResponseEntity.ok(updated);
     }
 
