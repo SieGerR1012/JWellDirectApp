@@ -31,6 +31,8 @@ public class OrganisationService {
     public Organisation update(Long id, Organisation organisation) {
         Organisation existing = findById(id);
         existing.setName(organisation.getName());
+        existing.setInn(organisation.getInn());
+        existing.setKpp(organisation.getKpp());
         return repository.save(existing);
     }
 
@@ -38,6 +40,12 @@ public class OrganisationService {
         Organisation existing = findById(id);
         if (organisation.getName() != null) {
             existing.setName(organisation.getName());
+        }
+        if (organisation.getInn() != null) {
+            existing.setInn(organisation.getInn());
+        }
+        if (organisation.getKpp() != null) {
+            existing.setKpp(organisation.getKpp());
         }
         return repository.save(existing);
     }
