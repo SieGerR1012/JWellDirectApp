@@ -136,13 +136,6 @@ spring.jpa.hibernate.ddl-auto=update
 ./mvnw spring-boot:run
 ```
 
-Или соберите JAR и запустите:
-
-```bash
-mvn package
-java -jar target/JWellDirectApp-*.jar
-```
-
 ### Доступ
 
 - Веб-интерфейс: `http://localhost:8080`
