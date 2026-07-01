@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head('Исполнители')}"></head>
+<body>
+<nav th:replace="~{fragments/header :: nav}"></nav>
+<div class="container">
+  <h1 class="mb-4">Исполнители</h1>
+  <a th:href="@{/customers/create}" class="btn btn-primary mb-3">Добавить исполнителя</a>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="item : ${items}">
+        <td th:text="${item.id}">1</td>
+        <td th:text="${item.name}">Исполнитель</td>
+        <td>
+          <a th:href="@{/customers/{id}/edit(id=${item.id})}" class="btn btn-sm btn-warning">Редактировать</a>
+          <form th:action="@{/customers/{id}/delete(id=${item.id})}" method="post" style="display:inline">
+            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Удалить?')">Удалить</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/}" class="btn btn-secondary">На главную</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

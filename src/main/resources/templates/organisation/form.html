@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head('Заказчик')}"></head>
+<body>
+<nav th:replace="~{fragments/header :: nav}"></nav>
+<div class="container">
+  <h1 class="mb-4" th:text="${item.id} ? 'Редактировать заказчика' : 'Новый заказчик'">Заказчик</h1>
+  <form th:action="${item.id} ? @{/organisations/{id}/edit(id=${item.id})} : @{/organisations/create}" method="post" class="w-50">
+    <div class="mb-3">
+      <label class="form-label">Название</label>
+      <input type="text" name="name" th:value="${item.name}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">ИНН</label>
+      <input type="text" name="inn" th:value="${item.inn}" class="form-control" required maxlength="10">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">КПП</label>
+      <input type="text" name="kpp" th:value="${item.kpp}" class="form-control" required maxlength="9">
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a th:href="@{/organisations}" class="btn btn-secondary">Отмена</a>
+  </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

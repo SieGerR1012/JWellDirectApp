@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head('Скважины')}"></head>
+<body>
+<nav th:replace="~{fragments/header :: nav}"></nav>
+<div class="container">
+  <h1 class="mb-4">Скважины</h1>
+  <a th:href="@{/wells/create}" class="btn btn-primary mb-3">Добавить скважину</a>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Номер скважины</th>
+        <th>Заказчик</th>
+        <th>Исполнитель</th>
+        <th>Регион</th>
+        <th>Участок недр</th>
+        <th>Месторождение</th>
+        <th>Куст</th>
+        <th>Бригада</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="item : ${items}">
+        <td th:text="${item.id}">1</td>
+        <td th:text="${item.wellNumber}">001</td>
+        <td th:text="${item.organisation?.name}">Заказчик</td>
+        <td th:text="${item.customer?.name}">Исполнитель</td>
+        <td th:text="${item.region?.name}">Регион</td>
+        <td th:text="${item.subsurfacePlot?.name}">Участок</td>
+        <td th:text="${item.field?.name}">Месторождение</td>
+        <td th:text="${item.cluster?.name}">Куст</td>
+        <td th:text="${item.drillingCrew?.number}">1</td>
+        <td>
+          <a th:href="@{/wells/{id}/edit(id=${item.id})}" class="btn btn-sm btn-warning">Редактировать</a>
+          <form th:action="@{/wells/{id}/delete(id=${item.id})}" method="post" style="display:inline">
+            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Удалить?')">Удалить</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a th:href="@{/}" class="btn btn-secondary">На главную</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

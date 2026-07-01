@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head('Скважина')}"></head>
+<body>
+<nav th:replace="~{fragments/header :: nav}"></nav>
+<div class="container">
+  <h1 class="mb-4" th:text="${well.id} ? 'Редактировать скважину' : 'Новая скважина'">Скважина</h1>
+  <form th:action="${well.id} ? @{/wells/{id}/edit(id=${well.id})} : @{/wells/create}" method="post" class="w-75">
+    <input type="hidden" name="id" th:value="${well.id}">
+    <div class="mb-3">
+      <label class="form-label">Номер скважины</label>
+      <input type="text" name="wellNumber" th:value="${well.wellNumber}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Заказчик</label>
+      <select name="organisationId" class="form-select" required>
+        <option value="">-- Выберите --</option>
+        <option th:each="org : ${organisations}" th:value="${org.id}" th:text="${org.name}" th:selected="${well.organisation?.id == org.id}"></option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Исполнитель</label>
+      <select name="customerId" class="form-select">
+        <option value="">-- Нет --</option>
+        <option th:each="c : ${customers}" th:value="${c.id}" th:text="${c.name}" th:selected="${well.customer?.id == c.id}"></option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Регион</label>
+      <select name="regionId" class="form-select" required>
+        <option value="">-- Выберите --</option>
+        <option th:each="r : ${regions}" th:value="${r.id}" th:text="${r.name}" th:selected="${well.region?.id == r.id}"></option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Участок недр</label>
+      <select name="subsurfacePlotId" class="form-select" required>
+        <option value="">-- Выберите --</option>
+        <option th:each="sp : ${subsurfacePlots}" th:value="${sp.id}" th:text="${sp.name}" th:selected="${well.subsurfacePlot?.id == sp.id}"></option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Месторождение</label>
+      <select name="fieldId" class="form-select" required>
+        <option value="">-- Выберите --</option>
+        <option th:each="f : ${fields}" th:value="${f.id}" th:text="${f.name}" th:selected="${well.field?.id == f.id}"></option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Куст</label>
+      <select name="clusterId" class="form-select" required>
+        <option value="">-- Выберите --</option>
+        <option th:each="cl : ${clusters}" th:value="${cl.id}" th:text="${cl.name}" th:selected="${well.cluster?.id == cl.id}"></option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Буровая бригада</label>
+      <select name="drillingCrewId" class="form-select" required>
+        <option value="">-- Выберите --</option>
+        <option th:each="dc : ${drillingCrews}" th:value="${dc.id}" th:text="'Бригада ' + ${dc.number}" th:selected="${well.drillingCrew?.id == dc.id}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a th:href="@{/wells}" class="btn btn-secondary">Отмена</a>
+  </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

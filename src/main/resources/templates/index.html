@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: head('JWellDirect')}"></head>
+<body>
+<nav th:replace="~{fragments/header :: nav}"></nav>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">JWellDirect — справочник скважин</h1>
+      <p class="lead">Управление скважинами и связанными справочниками.</p>
+      <div class="list-group mt-4">
+        <a th:href="@{/wells}" class="list-group-item list-group-item-action">Скважины</a>
+        <a th:href="@{/organisations}" class="list-group-item list-group-item-action">Заказчики</a>
+        <a th:href="@{/customers}" class="list-group-item list-group-item-action">Исполнители</a>
+        <a th:href="@{/regions}" class="list-group-item list-group-item-action">Регионы</a>
+        <a th:href="@{/subsurface-plots}" class="list-group-item list-group-item-action">Участки недр</a>
+        <a th:href="@{/fields}" class="list-group-item list-group-item-action">Месторождения</a>
+        <a th:href="@{/clusters}" class="list-group-item list-group-item-action">Кусты</a>
+        <a th:href="@{/drilling-crews}" class="list-group-item list-group-item-action">Буровые бригады</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
