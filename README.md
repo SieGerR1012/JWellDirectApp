@@ -20,7 +20,7 @@
 
 - **Язык:** Java 25
 - **Фреймворк:** Spring Boot 3.4.4
-- **Доступ к данным:** Spring Data JPA / Hibernate 6
+- **Доступ к данным:** Spring Data JPA
 - **База данных:** PostgreSQL
 - **Шаблонизатор:** Thymeleaf
 - **Сборка:** Maven
